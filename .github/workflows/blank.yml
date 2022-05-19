@@ -51,6 +51,15 @@ jobs:
         
       - name: Get Terraform version
         run: terraform version
+        
+      - name: AWS S3 ls
+        run: aws s3 ls 
+        env:
+          AWS_DEFAULT_REGION: eu-west-1
+          AWS_ACCESS_KEY_ID: AKIAYXSQN5G5M4Y53FFG 
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        
+
 
 
 
