@@ -29,11 +29,30 @@ jobs:
       - name: Run a one-line script
         run: echo $HOSTNAME
         
-      - name: Install AWS-CLI
-        run:  sudo apt-get update && sudo apt-get install awscli -y
+      - name: add repo
+        run:  curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - 
+        
+      - name: get repo for archv type
+        run: sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+        
+      - name: repo update
+        run: sudo apt-get update 
+        
+        
+  
+        
+      - name: install aws cli and terraform
+        run: sudo apt-get install awscli terraform -y 
+        
+        
         
       - name: Get AWS CLI Version
         run:  aws --version
+        
+      - name: Get Terraform version
+        run: terraform version
+
+
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
