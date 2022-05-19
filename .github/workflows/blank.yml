@@ -63,8 +63,19 @@ jobs:
         
       - uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
+          name: s3 list
           path: /tmp/s3.txt # or path/to/artifact
+          
+      - name: Download s3 list artiface
+        uses: actions/download-artifact@v3
+        with:
+          name: s3 list
+          
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat s3.txt`
+          echo The result is $value
         
 
 
